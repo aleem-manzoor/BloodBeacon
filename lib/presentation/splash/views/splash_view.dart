@@ -35,13 +35,13 @@ class SplashView extends GetView<SplashController> {
                   ),
                   1.h.height,
                   MyText(
-                    title: "Beaverise",
+                    title: "PPSC Preparation",
                     weight: FontWeight.w700,
                     size: 26.sp,
                     clr: AppColors.black,
                   ),
                   MyText(
-                    title: "A Perfect Platform to find Service Providers",
+                    title: "A Perfect Platform for PPSC test preparation",
                     weight: FontWeight.w400,
                     size: 15.5.sp,
                     clr: AppColors.black,
