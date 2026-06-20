@@ -19,13 +19,16 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
         init: ForgotPasswordController(),
         builder: (controller) {
           return Scaffold(
-            appBar: AppBarCustom(
-              title: 'Beaverise',
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: MyText(
+                title: 'Base Project',
+                size: 18.sp,
+                weight: FontWeight.w700,
+                clr: AppColors.black,
+              ),
               centerTitle: true,
-              isLogo: true,
-              onLeadingPressed: () {
-                Get.back();
-              },
             ),
             body: SingleChildScrollView(
               child: Form(

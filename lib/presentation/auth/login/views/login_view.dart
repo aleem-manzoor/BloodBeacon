@@ -19,13 +19,16 @@ class LoginView extends GetView<LoginController> {
         init: LoginController(),
         builder: (controller) {
           return Scaffold(
-            appBar: AppBarCustom(
-              title: 'Beaverise',
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: MyText(
+                title: 'Base Project',
+                size: 18.sp,
+                weight: FontWeight.w700,
+                clr: AppColors.black,
+              ),
               centerTitle: true,
-              isLogo: true,
-              onLeadingPressed: () {
-                Get.back();
-              },
             ),
             bottomNavigationBar: SafeArea(
               child: Row(

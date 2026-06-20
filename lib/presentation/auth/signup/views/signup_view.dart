@@ -17,13 +17,16 @@ class SignupView extends GetView<SignupController> {
         init: SignupController(),
         builder: (controller) {
           return Scaffold(
-            appBar: AppBarCustom(
-              title: 'Beaverise',
-              centerTitle: false,
-              isLogo: true,
-              onLeadingPressed: () {
-                Get.back();
-              },
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: MyText(
+                title: 'Base Project',
+                size: 18.sp,
+                weight: FontWeight.w700,
+                clr: AppColors.black,
+              ),
+              centerTitle: true,
             ),
             bottomNavigationBar: SafeArea(
               child: Row(
