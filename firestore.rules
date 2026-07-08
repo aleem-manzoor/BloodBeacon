@@ -1,0 +1,78 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // Users can read any profile (needed for donor search); write only their own.
+    // Non-admins cannot change their own role or disabled flag (no self-escalation).
+    match /users/{uid} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(uid) || isAdmin();
+      allow update: if isAdmin()
+        || (isOwner(uid)
+            && request.resource.data.role == resource.data.role
+            && request.resource.data.isDisabled == resource.data.isDisabled);
+      allow delete: if isAdmin();
+
+      // Private sub-collections owned by the user.
+      match /donations/{docId} {
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+      match /favorites/{docId} {
+        allow read, write: if isOwner(uid) || isAdmin();
+      }
+      // Any signed-in user may push a notification (e.g. emergency alerts);
+      // only the owner (or admin) can read or modify them.
+      match /notifications/{docId} {
+        allow create: if isSignedIn();
+        allow read, update, delete: if isOwner(uid) || isAdmin();
+      }
+    }
+
+    // Emergency blood requests: readable by any signed-in user (feed/search).
+    match /blood_requests/{docId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isAdmin()
+        || (isSignedIn() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // Verified directories: everyone signed-in reads, only admins manage.
+    match /hospitals/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+    match /blood_banks/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // Reports: any signed-in user files one; only admins review them.
+    match /reports/{docId} {
+      allow create: if isSignedIn()
+        && request.resource.data.reportedBy == request.auth.uid;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Announcements: everyone signed-in reads, only admins publish.
+    match /announcements/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+  }
+}

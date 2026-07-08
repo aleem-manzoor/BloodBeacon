@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class BackgroundView extends StatelessWidget {
   final Widget child;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/shared_widgets/appbar_custom.dart';
-import 'package:ppsc_preparation/app/shared_widgets/textfield.dart';
+import 'package:blood_beacon/app/shared_widgets/appbar_custom.dart';
+import 'package:blood_beacon/app/shared_widgets/textfield.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
 
 import '../controllers/otp_controller.dart';
 
@@ -86,20 +86,24 @@ class OtpView extends GetView<OtpController> {
                           return null;
                         },
                       ).paddingOnly(top: 0.5.h, bottom: 3.h),
-                      CustomButton(
-                          text: 'Verify',
-                          radius: 30,
-                          fontSize: 15.sp,
-                          weight: FontWeight.w600,
-                          onPress: () async {
-                            FocusManager.instance.primaryFocus!.unfocus();
-                            if (controller.loginFormKey.currentState!
-                                .validate()) {
-                              await controller.otpVerification(); //todo
-                            }
-                          },
-                          textColor: AppColors.white,
-                          boxColor: AppColors.primary),
+                      Obx(
+                        () => CustomButton(
+                            text: 'Verify',
+                            radius: 30,
+                            fontSize: 15.sp,
+                            weight: FontWeight.w600,
+                            isCupertinoIndicator: controller.isLoading.value,
+                            onPress: () async {
+                              if (controller.isLoading.value) return;
+                              FocusManager.instance.primaryFocus!.unfocus();
+                              if (controller.loginFormKey.currentState!
+                                  .validate()) {
+                                await controller.otpVerification();
+                              }
+                            },
+                            textColor: AppColors.white,
+                            boxColor: AppColors.primary),
+                      ),
                       2.h.height,
                       MyText(
                         title: '00:30',

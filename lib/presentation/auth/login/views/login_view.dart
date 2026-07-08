@@ -1,14 +1,14 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/shared_widgets/appbar_custom.dart';
+import 'package:blood_beacon/app/shared_widgets/appbar_custom.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/routes/app_pages.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
-import 'package:ppsc_preparation/app/shared_widgets/textfield.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/routes/app_pages.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/shared_widgets/textfield.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -23,7 +23,7 @@ class LoginView extends GetView<LoginController> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: MyText(
-                title: 'Base Project',
+                title: 'BloodBeacon',
                 size: 18.sp,
                 weight: FontWeight.w700,
                 clr: AppColors.black,
@@ -154,23 +154,26 @@ class LoginView extends GetView<LoginController> {
                         ],
                       ).paddingOnly(bottom: 2.h),
 
-                      CustomButton(
-                          text: 'Login',
-                          radius: 30,
-                          fontSize: 15.sp,
-                          weight: FontWeight.w600,
-                          onPress: () async {
-                            FocusManager.instance.primaryFocus!.unfocus();
-                            if (controller.loginFormKey.currentState!
-                                .validate()) {
-                              await controller.login(
-                                  controller.emailController.text.trim(),
-                                  controller.passwordController.text
-                                      .trim()); //todo
-                            }
-                          },
-                          textColor: AppColors.white,
-                          boxColor: AppColors.primary),
+                      Obx(
+                        () => CustomButton(
+                            text: 'Login',
+                            radius: 30,
+                            fontSize: 15.sp,
+                            weight: FontWeight.w600,
+                            isCupertinoIndicator: controller.isLoading.value,
+                            onPress: () async {
+                              if (controller.isLoading.value) return;
+                              FocusManager.instance.primaryFocus!.unfocus();
+                              if (controller.loginFormKey.currentState!
+                                  .validate()) {
+                                await controller.login(
+                                    controller.emailController.text.trim(),
+                                    controller.passwordController.text.trim());
+                              }
+                            },
+                            textColor: AppColors.white,
+                            boxColor: AppColors.primary),
+                      ),
 
                       // Row(
                       //   children: [

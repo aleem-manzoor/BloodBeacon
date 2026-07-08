@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class CustomSVGImage extends StatelessWidget {
   final String path;

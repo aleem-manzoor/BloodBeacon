@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/config/global_var.dart';
+import 'package:blood_beacon/app/config/global_var.dart';
 
 import '../provider/network/api_endpoint.dart';
 import '../provider/network/api_provider.dart';

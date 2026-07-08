@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/shared_widgets/appbar_custom.dart';
+import 'package:blood_beacon/app/shared_widgets/appbar_custom.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
-import 'package:ppsc_preparation/app/shared_widgets/textfield.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/shared_widgets/textfield.dart';
 
 import '../controllers/forgot_password_controller.dart';
 
@@ -23,7 +23,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: MyText(
-                title: 'Base Project',
+                title: 'BloodBeacon',
                 size: 18.sp,
                 weight: FontWeight.w700,
                 clr: AppColors.black,
@@ -59,19 +59,23 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                           return null;
                         },
                       ).paddingOnly(top: 0.5.h, bottom: 3.h),
-                      CustomButton(
-                          text: 'Submit',
-                          radius: 30,
-                          fontSize: 15.sp,
-                          weight: FontWeight.w600,
-                          onPress: () async {
-                            FocusManager.instance.primaryFocus!.unfocus();
-                            if (controller.formKey.currentState!.validate()) {
-                              await controller.forgetPassword();
-                            }
-                          },
-                          textColor: AppColors.white,
-                          boxColor: AppColors.primary),
+                      Obx(
+                        () => CustomButton(
+                            text: 'Submit',
+                            radius: 30,
+                            fontSize: 15.sp,
+                            weight: FontWeight.w600,
+                            isCupertinoIndicator: controller.isLoading.value,
+                            onPress: () async {
+                              if (controller.isLoading.value) return;
+                              FocusManager.instance.primaryFocus!.unfocus();
+                              if (controller.formKey.currentState!.validate()) {
+                                await controller.forgetPassword();
+                              }
+                            },
+                            textColor: AppColors.white,
+                            boxColor: AppColors.primary),
+                      ),
                     ],
                   ).paddingSymmetric(horizontal: 20),
                 ),

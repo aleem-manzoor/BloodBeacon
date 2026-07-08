@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class CustomAssetImage extends StatelessWidget {
   final String path;

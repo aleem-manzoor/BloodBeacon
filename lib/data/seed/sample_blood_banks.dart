@@ -1,0 +1,58 @@
+import 'package:blood_beacon/data/model/place_model.dart';
+
+final Map<String, PlaceModel> sampleBloodBanks = {
+  'seed_nishtar': PlaceModel(
+    name: 'Nishtar Hospital Blood Bank',
+    address: 'Nishtar Road, Multan',
+    city: 'Multan',
+    latitude: 30.202639,
+    longitude: 71.443491,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+  'seed_fatimid': PlaceModel(
+    name: 'Fatimid Foundation Blood Bank',
+    address: 'Multan',
+    city: 'Multan',
+    latitude: 30.192304,
+    longitude: 71.503269,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+  'seed_children': PlaceModel(
+    name: "Children's Hospital Blood Bank",
+    address: 'Abdali Road, Multan',
+    city: 'Multan',
+    latitude: 30.196095,
+    longitude: 71.461859,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+  'seed_cardiology': PlaceModel(
+    name: 'Multan Institute of Cardiology Blood Bank',
+    address: 'Multan',
+    city: 'Multan',
+    latitude: 30.191964,
+    longitude: 71.450391,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+  'seed_cmh': PlaceModel(
+    name: 'CMH Multan Blood Bank',
+    address: 'Multan Cantt, Multan',
+    city: 'Multan',
+    latitude: 30.192617,
+    longitude: 71.437467,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+  'seed_city': PlaceModel(
+    name: 'City Hospital Blood Bank',
+    address: 'Multan',
+    city: 'Multan',
+    latitude: 30.211780,
+    longitude: 71.469670,
+    type: 'Blood Bank',
+    verified: true,
+  ),
+};

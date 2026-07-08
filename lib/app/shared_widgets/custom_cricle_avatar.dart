@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
   final String imageUrl;

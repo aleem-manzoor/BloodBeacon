@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../app/config/app_colors.dart';
 

@@ -1,6 +1,6 @@
 {
-    "name": "ppsc_preparation",
-    "short_name": "ppsc_preparation",
+    "name": "BloodBeacon",
+    "short_name": "BloodBeacon",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

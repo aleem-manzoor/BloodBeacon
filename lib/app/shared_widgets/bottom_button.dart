@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
 import '../config/app_colors.dart';
 
 class BottomButton extends StatelessWidget {

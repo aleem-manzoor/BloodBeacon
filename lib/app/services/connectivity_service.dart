@@ -5,7 +5,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class CheckConnectivity extends GetxService {
   final Rx<ConnectivityResult> connectionStatus = ConnectivityResult.none.obs;

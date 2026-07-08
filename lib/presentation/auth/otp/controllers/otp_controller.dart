@@ -4,12 +4,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/config/global_var.dart';
-import 'package:ppsc_preparation/app/routes/app_pages.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
-import 'package:ppsc_preparation/data/model/user_model.dart';
-import 'package:ppsc_preparation/data/provider/local_storage/local_db.dart';
-import 'package:ppsc_preparation/data/repositories/authentication_repository.dart';
+import 'package:blood_beacon/app/config/global_var.dart';
+import 'package:blood_beacon/app/routes/app_pages.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
+import 'package:blood_beacon/data/model/user_model.dart';
+import 'package:blood_beacon/data/provider/local_storage/local_db.dart';
+import 'package:blood_beacon/data/repositories/authentication_repository.dart';
 
 class OtpController extends GetxController {
   final TextEditingController otpController = TextEditingController();
@@ -24,6 +24,7 @@ class OtpController extends GetxController {
   RxInt timerValue = 59.obs;
   Timer? countdownTimer;
   RxBool canResendOtp = false.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -37,7 +38,9 @@ class OtpController extends GetxController {
   }
 
   Future<void> otpVerification() async {
+    if (isLoading.value) return;
     try {
+      isLoading.value = true;
       final response = await profileRepository.otpVerification(
           email: email, otp: otpController.text);
       if (response != null) {
@@ -65,6 +68,8 @@ class OtpController extends GetxController {
       }
     } catch (e) {
       log('-----String----${e.toString()}');
+    } finally {
+      isLoading.value = false;
     }
   }
 

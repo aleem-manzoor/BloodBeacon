@@ -1,4 +1,4 @@
-package com.example.ppsc_preparation
+package com.bloodbeacon.app
 
 import io.flutter.embedding.android.FlutterActivity
 

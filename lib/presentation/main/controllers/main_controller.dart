@@ -1,15 +1,14 @@
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/routes/app_pages.dart';
-import 'package:ppsc_preparation/data/provider/local_storage/local_db.dart';
+import 'package:blood_beacon/app/routes/app_pages.dart';
+import 'package:blood_beacon/app/services/session_service.dart';
 
 class MainController extends GetxController {
-  //TODO: Implement MainController
+  final RxInt currentIndex = 0.obs;
 
-  final count = 0.obs;
+  void changeTab(int index) => currentIndex.value = index;
 
-  Future logout() async {
-    LocalDB.clear();
+  Future<void> logout() async {
+    await Get.find<SessionService>().signOut();
     Get.offAllNamed(Routes.LOGIN);
-    update();
   }
 }

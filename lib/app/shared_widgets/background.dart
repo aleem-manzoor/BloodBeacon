@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 
 class Background extends StatelessWidget {
   final Widget child;

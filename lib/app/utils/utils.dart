@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
 
 import '../config/app_colors.dart';
 import 'package:intl/intl.dart';

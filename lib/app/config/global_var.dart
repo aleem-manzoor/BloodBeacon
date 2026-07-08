@@ -1,4 +1,4 @@
-import 'package:ppsc_preparation/data/model/user_model.dart';
+import 'package:blood_beacon/data/model/user_model.dart';
 
 class Globals {
   static String authToken = "";

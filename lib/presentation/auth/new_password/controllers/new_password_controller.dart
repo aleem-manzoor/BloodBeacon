@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/routes/app_pages.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
-import 'package:ppsc_preparation/data/repositories/authentication_repository.dart';
+import 'package:blood_beacon/app/routes/app_pages.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
+import 'package:blood_beacon/data/repositories/authentication_repository.dart';
 
 class NewPasswordController extends GetxController {
   final newFormKey = GlobalKey<FormState>();
@@ -13,10 +13,13 @@ class NewPasswordController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   RxBool showPassword = false.obs;
   RxBool showConfirmPassword = false.obs;
+  RxBool isLoading = false.obs;
   String email = '';
 
   Future<void> setPassword() async {
+    if (isLoading.value) return;
     try {
+      isLoading.value = true;
       final response = await profileRepository.resetPassword(
         password: passwordController.text.trim(),
       );
@@ -36,6 +39,8 @@ class NewPasswordController extends GetxController {
       }
     } catch (e) {
       log('-----String----${e.toString()}');
+    } finally {
+      isLoading.value = false;
     }
   }
 }

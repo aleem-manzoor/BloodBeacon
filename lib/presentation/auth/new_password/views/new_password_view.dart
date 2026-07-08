@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/shared_widgets/appbar_custom.dart';
+import 'package:blood_beacon/app/shared_widgets/appbar_custom.dart';
 import 'package:sizer/sizer.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
-import 'package:ppsc_preparation/app/shared_widgets/textfield.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/shared_widgets/textfield.dart';
 import '../controllers/new_password_controller.dart';
 
 class NewPasswordView extends GetView<NewPasswordController> {
@@ -87,20 +87,24 @@ class NewPasswordView extends GetView<NewPasswordController> {
                           return null;
                         },
                       ).paddingOnly(top: 0.5.h, bottom: 3.h),
-                      CustomButton(
-                          text: 'Set Password',
-                          radius: 30,
-                          fontSize: 15.sp,
-                          weight: FontWeight.w600,
-                          onPress: () async {
-                            FocusManager.instance.primaryFocus!.unfocus();
-                            if (controller.newFormKey.currentState!
-                                .validate()) {
-                              await controller.setPassword();
-                            }
-                          },
-                          textColor: AppColors.white,
-                          boxColor: AppColors.primary),
+                      Obx(
+                        () => CustomButton(
+                            text: 'Set Password',
+                            radius: 30,
+                            fontSize: 15.sp,
+                            weight: FontWeight.w600,
+                            isCupertinoIndicator: controller.isLoading.value,
+                            onPress: () async {
+                              if (controller.isLoading.value) return;
+                              FocusManager.instance.primaryFocus!.unfocus();
+                              if (controller.newFormKey.currentState!
+                                  .validate()) {
+                                await controller.setPassword();
+                              }
+                            },
+                            textColor: AppColors.white,
+                            boxColor: AppColors.primary),
+                      ),
                     ],
                   ).paddingSymmetric(horizontal: 20),
                 ),

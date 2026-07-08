@@ -2,17 +2,21 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/routes/app_pages.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
-import 'package:ppsc_preparation/data/repositories/authentication_repository.dart';
+import 'package:blood_beacon/app/routes/app_pages.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
+import 'package:blood_beacon/data/repositories/authentication_repository.dart';
 
 class ForgotPasswordController extends GetxController {
   final formKey = GlobalKey<FormState>();
   ProfileRepository profileRepository = ProfileRepository();
   TextEditingController emailController = TextEditingController();
 
+  RxBool isLoading = false.obs;
+
   Future<void> forgetPassword() async {
+    if (isLoading.value) return;
     try {
+      isLoading.value = true;
       final response = await profileRepository.forgetPasswordEmail(
         email: emailController.text.trim(),
       );
@@ -31,6 +35,8 @@ class ForgotPasswordController extends GetxController {
       }
     } catch (e) {
       log('Registration failed with status: ${e.toString()}');
+    } finally {
+      isLoading.value = false;
     }
   }
 }

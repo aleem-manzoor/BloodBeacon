@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
-import 'package:ppsc_preparation/app/utils/utils.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/utils/utils.dart';
 import 'package:sizer/sizer.dart';
 
 class TextButtonWithIcon extends StatelessWidget {

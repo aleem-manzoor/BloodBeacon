@@ -93,7 +93,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerWidget extends StatefulWidget {

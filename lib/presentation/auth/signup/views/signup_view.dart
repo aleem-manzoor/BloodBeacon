@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ppsc_preparation/app/config/app_colors.dart';
-import 'package:ppsc_preparation/app/extensions/extensions.dart';
-import 'package:ppsc_preparation/app/shared_widgets/appbar_custom.dart';
-import 'package:ppsc_preparation/app/shared_widgets/custom_button.dart';
-import 'package:ppsc_preparation/app/shared_widgets/my_text.dart';
-import 'package:ppsc_preparation/app/shared_widgets/textfield.dart';
+import 'package:blood_beacon/app/config/app_colors.dart';
+import 'package:blood_beacon/app/extensions/extensions.dart';
+import 'package:blood_beacon/app/shared_widgets/appbar_custom.dart';
+import 'package:blood_beacon/app/shared_widgets/custom_button.dart';
+import 'package:blood_beacon/app/shared_widgets/my_text.dart';
+import 'package:blood_beacon/app/shared_widgets/textfield.dart';
 import 'package:sizer/sizer.dart';
 import '../controllers/signup_controller.dart';
 
@@ -21,7 +21,7 @@ class SignupView extends GetView<SignupController> {
               backgroundColor: Colors.transparent,
               elevation: 0,
               title: MyText(
-                title: 'Base Project',
+                title: 'BloodBeacon',
                 size: 18.sp,
                 weight: FontWeight.w700,
                 clr: AppColors.black,
@@ -198,27 +198,34 @@ class SignupView extends GetView<SignupController> {
                         ],
                       ).paddingOnly(bottom: 2.h),
 
-                      CustomButton(
-                          text: 'Create Account',
-                          radius: 30,
-                          fontSize: 15.sp,
-                          weight: FontWeight.w600,
-                          onPress: () async {
-                            if (controller.loginFormKey.currentState!
-                                .validate()) {
-                              FocusManager.instance.primaryFocus!.unfocus();
-                              await controller.register(
-                                  email: controller.emailController.text.trim(),
-                                  firstName: controller.firstNameController.text
-                                      .trim(),
-                                  lastName: controller.lastNameController.text,
-                                  phoneNumber:
-                                      controller.phoneController.text.trim(),
-                                  password: controller.passwordController.text);
-                            }
-                          },
-                          textColor: AppColors.white,
-                          boxColor: AppColors.primary),
+                      Obx(
+                        () => CustomButton(
+                            text: 'Create Account',
+                            radius: 30,
+                            fontSize: 15.sp,
+                            weight: FontWeight.w600,
+                            isCupertinoIndicator: controller.isLoading.value,
+                            onPress: () async {
+                              if (controller.isLoading.value) return;
+                              if (controller.loginFormKey.currentState!
+                                  .validate()) {
+                                FocusManager.instance.primaryFocus!.unfocus();
+                                await controller.register(
+                                    email:
+                                        controller.emailController.text.trim(),
+                                    firstName: controller
+                                        .firstNameController.text
+                                        .trim(),
+                                    lastName: controller.lastNameController.text,
+                                    phoneNumber:
+                                        controller.phoneController.text.trim(),
+                                    password:
+                                        controller.passwordController.text);
+                              }
+                            },
+                            textColor: AppColors.white,
+                            boxColor: AppColors.primary),
+                      ),
 
                       // Row(
                       //   children: [
